@@ -1,9 +1,10 @@
 module.exports = class Books {
-    constructor(id, title, description, isbn) {
+    constructor(id, title, description, isbn, genre) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.isbn = isbn;
+        this.genre = genre;
     }
 
     
@@ -22,5 +23,9 @@ module.exports = class Books {
     
     isbn() {
         return this.isbn;
+    }
+
+    genre() {
+        return this.genre;
     }
 }

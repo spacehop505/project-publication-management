@@ -4,6 +4,30 @@ const router = express.Router();
 const QueryDatabaseRead = require('../database/query/read.js');
 
 
+router.get('/genres', getGenres = (request, response) => {
+    console.log('\nGET: ', request.url);
+
+    QueryDatabaseRead.readGenres().then(([reply]) => {
+        response.status(200).json({
+                message: 'GET',
+                content: reply
+            })
+        })
+        .catch(err => console.log(err));
+});
+
+router.get('/genres/:id', getGenres = (request, response) => {
+    console.log('\nGET: ', request.url);
+    const id = request.params.id;
+    QueryDatabaseRead.readGenre(id).then(([reply]) => {
+        response.status(200).json({
+                message: 'GET',
+                content: reply
+            })
+        })
+        .catch(err => console.log(err));
+});
+
 
 
 router.get('/books', getBooks = (req, res) => {
