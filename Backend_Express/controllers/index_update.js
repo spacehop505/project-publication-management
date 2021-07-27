@@ -8,83 +8,81 @@ const AuthorsBooks = require('../model/AuthorsBooks.js');
 
 const QueryDatabaseUpdate = require('../database/query/update.js');
 
-router.put('/genres/:id', updateGenre = (req, res) => {
-    console.log('\nPUT: ', req.url);
-    console.log(req.body);
+//---------------------GENRE-----------------------------//
+router.put('/genres/:id', putGenre = (req, res) => {
+    print_url4(req.url, req.body);
+
     const id = req.params.id;
     const name = req.body.name;
     const description = req.body.description;
-    const genre_input = new Genre(id, name, description);
+    const genre_class = new Genre(id, name, description); // CLASS
 
-    QueryDatabaseUpdate.updateGenre(genre_input).then(([reply]) => {
+    QueryDatabaseUpdate.updateGenre(genre_class).then(([reply]) => {
         res.status(200).json({
-            message: 'PUT',
+            message: 'PUT genres '+ id,
             content: reply
         });
     }).catch(err => console.log(err));
+});
 
-})
-
-
-router.put('/books/:id', updateBook = (req, res) => {
-    console.log('\nPUT: ', req.url);
-    console.log(req.body);
+//---------------------BOOK-----------------------------//
+router.put('/books/:id', putBook = (req, res) => {
+    print_url4(req.url, req.body);
+    
     const id = req.params.id;
     const title = req.body.title;
     const description = req.body.description;
     const isbn = req.body.isbn;
     const genre = req.body.genre;
-    const book_input = new Book(id, title, description, isbn, genre);
-    console.log(book_input);
+    const book_class = new Book(id, title, description, isbn, genre); // CLASS
 
-    QueryDatabaseUpdate.updateBook(book_input).then(([reply]) => {
+    QueryDatabaseUpdate.updateBook(book_class).then(([reply]) => {
         res.status(200).json({
-            message: 'PUT',
+            message: 'PUT books ' + id,
             content: reply
         });
     }).catch(err => console.log(err));
 });
 
+//---------------------AUTHOR-----------------------------//
+router.put('/authors/:id', putAuthor = (req, res) => {
+    print_url4(req.url, req.body);
 
-router.put('/authors/:id', updateAuthor = (req, res) => {
-    console.log('\nPUT: ', req.url);
-    console.log(req.body);
     const id = req.params.id;
     const name = req.body.name;
     const bio = req.body.bio;
+    const author_class = new Author(id, name, bio); // CLASS
 
-    const author_input = new Author(id, name, bio);
-    console.log(author_input);
-
-    QueryDatabaseUpdate.updateAuthor(author_input).then(([reply]) => {
+    QueryDatabaseUpdate.updateAuthor(author_class).then(([reply]) => {
         res.status(200).json({
-            message: 'PUT',
+            message: 'PUT authors '+ id,
             content: reply
         });
     }).catch(err => console.log(err));
 });
 
-
-router.put('/authorsbooks', updateAuthorBoooks = (req, res) => {
-    console.log('\nPUT: ', req.url);
-    console.log(req.body);
+//---------------------AUTHORS-BOOKS-----------------------------//
+router.put('/authorsbooks', putAuthorBoooks = (req, res) => {
+    print_url4(req.url, req.body);
 
     const id = null;
     const pk_auther_id = req.body.pk_auther_id;
     const pk_book_id = req.body.pk_book_id;
+    const authorbooks_class = new AuthorsBooks(id, pk_auther_id, pk_book_id); // CLASS
 
-    const authorbooks_input = new AuthorsBooks(id, pk_auther_id, pk_book_id);
-    console.log(author_input);
-
-    QueryDatabaseCreate.updateAuthorBoooks(authorbooks_input).then(([reply]) => {
+    QueryDatabaseCreate.updateAuthorBoooks(authorbooks_class).then(([reply]) => {
         res.status(200).json({
-            message: 'PUT',
+            message: 'PUT authorsbooks',
             content: reply
         });
     }).catch(err => console.log(err));
-
 });
 
+//---------------------OTHER-----------------------------//
+print_url4 = (url, body) => {
+    console.log('\nPUT:', url);
+    console.log(body);
+}
 
 // EXPORT 
 module.exports = router;

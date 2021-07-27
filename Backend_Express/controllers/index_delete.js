@@ -1,55 +1,66 @@
 const express = require('express');
 const router = express.Router();
 
-
-
 const QueryDatabaseDelete = require('../database/query/delete.js');
 
+//---------------------GENRE-----------------------------//
 router.get('/genre/:id', getBook = (req, res) => {
-    console.log('\nGET: ', req.url);
+    print_url2(req.url);
+    
     const id = req.params.id;
     QueryDatabaseDelete.deleteGenre(id).then(([reply]) => {
         res.status(200).json({
-            message: 'GET',
+            message: 'DELETE genre ' + id,
             content: reply
         });
     }).catch(err => console.log(err));
 });
-router.get('/books/:id', getBook = (req, res) => {
-    console.log('\nGET: ', req.url);
-    const id = req.params.id;
 
+//---------------------BOOK-----------------------------//
+router.get('/books/:id', getBook = (req, res) => {
+    print_url2(req.url);
+
+    const id = req.params.id;
     QueryDatabaseDelete.deleteBook(id).then(([reply]) => {
         res.status(200).json({
-            message: 'GET',
+            message: 'DELETE book ' + id,
             content: reply
         });
     }).catch(err => console.log(err));
 });
 
+//---------------------AUTHOR-----------------------------//
 router.get('/authors/:id', getAuthor = (req, res) => {
-    console.log('\nGET: ', req.url);
-    const id = req.params.id;
+    print_url2(req.url);
 
+    const id = req.params.id;
     QueryDatabaseDelete.deleteAuthor(id).then(([reply]) => {
         res.status(200).json({
-            message: 'GET',
+            message: 'DELETE author ' + id,
             content: reply
         });
     }).catch(err => console.log(err));
 });
 
+//---------------------AUTHOR-BOOK-----------------------------//
 router.get('/authorsbooks/:id', getAuthorsBooks = (req, res) => {
-    console.log('\nGET: ', req.url);
-    const id = req.params.id;
+    print_url2(req.url);
 
+    const id = req.params.id;
     QueryDatabaseDelete.deleteAuthorsBooks(id).then(([reply]) => {
         res.status(200).json({
-            message: 'GET',
+            message: 'DELETE authorsbooks ' + id,
             content: reply
         });
     }).catch(err => console.log(err));
 });
+
+
+//---------------------OTHER-----------------------------//
+print_url2 = (req) => {
+    console.log('\nGET: ', req);
+};
+
 
 // EXPORT 
 module.exports = router;

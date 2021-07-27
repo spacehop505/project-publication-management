@@ -3,85 +3,83 @@ const router = express.Router();
 
 const QueryDatabaseRead = require('../database/query/read.js');
 
-
-router.get('/genres', getGenres = (request, response) => {
-    console.log('\nGET: ', request.url);
+//---------------------GENRES-----------------------------//
+router.get('/genres', getGenres = (req, res) => {
+    print_url3(req.url);
 
     QueryDatabaseRead.readGenres().then(([reply]) => {
-        response.status(200).json({
-                message: 'GET',
-                content: reply
-            })
-        })
-        .catch(err => console.log(err));
+        res.status(200).json({
+            message: 'GET genres',
+            content: reply
+        });
+    }).catch(err => console.log(err));
 });
 
-router.get('/genres/:id', getGenres = (request, response) => {
-    console.log('\nGET: ', request.url);
-    const id = request.params.id;
+router.get('/genres/:id', getGenres = (req, res) => {
+    print_url3(req.url);
+
+    const id = req.params.id;
     QueryDatabaseRead.readGenre(id).then(([reply]) => {
-        response.status(200).json({
-                message: 'GET',
-                content: reply
-            })
-        })
-        .catch(err => console.log(err));
+        res.status(200).json({
+            message: 'GET genres ' + id,
+            content: reply
+        });
+    }).catch(err => console.log(err));
 });
 
-
-
+//---------------------BOOKS-----------------------------//
 router.get('/books', getBooks = (req, res) => {
-    console.log('\nGET: ', req.url);
+    print_url3(req.url);
 
     QueryDatabaseRead.readBooks().then(([reply]) => {
-        console.log(reply[0].book_id);
-        console.log(reply[0].book_title);
-        console.log(reply[0].book_description);
-        console.log(reply[0].book_isbn);
+        //reply[0].book_id, reply[0].book_title, reply[0].book_description, reply[0].book_isbn
         res.status(200).json({
-            message: 'GET',
+            message: 'GET books',
             content: reply
         });
     }).catch(err => console.log(err));
 });
 
-router.get('/books/:id', getBook = (req, res) => {
-    console.log('\nGET: ', req.url);
-    const id = req.params.id;
+router.get('/books/:id', getBooks = (req, res) => {
+    print_url3(req.url);
 
+    const id = req.params.id;
     QueryDatabaseRead.readBook(id).then(([reply]) => {
         res.status(200).json({
-            message: 'GET',
+            message: 'GET books ' + id,
             content: reply
         });
     }).catch(err => console.log(err));
 });
 
-
+//---------------------AUTHOR-----------------------------//
 router.get('/authors', getAuthors = (req, res) => {
-    console.log('\nGET: ', req.url);
+    print_url3(req.url);
 
     QueryDatabaseRead.readAuthors().then(([reply]) => {
         res.status(200).json({
-            message: 'GET',
+            message: 'GET authors',
             content: reply
         });
     }).catch(err => console.log(err));
 });
 
-router.get('/authors/:id', getAuthor = (req, res) => {
-    console.log('\nGET: ', req.url);
-    const id = req.params.id;
+router.get('/authors/:id', getAuthors = (req, res) => {
+    print_url3(req.url);
 
+    const id = req.params.id;
     QueryDatabaseRead.readAuthor(id).then(([reply]) => {
         res.status(200).json({
-            message: 'GET',
+            message: 'GET authors ' + id,
             content: reply
         });
     }).catch(err => console.log(err));
 });
 
-
+//---------------------OTHER-----------------------------//
+print_url3 = (req1) => {
+    console.log('\nGET: ', req1);
+};
 
 // EXPORT 
 module.exports = router;
