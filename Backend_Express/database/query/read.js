@@ -1,42 +1,47 @@
 // SQL connection
 const db = require('../connection.js');
 
-exports.readGenres = () => {
-    console.log('DATABASE QUERY - readGenres');
+//1
+exports.readSelectGenres = () => {
+    console.log('DATABASE QUERY - readSelectGenres');
     return db.execute('SELECT * FROM genres;');
-}
-
-exports.readGenre = (id) => {
-    console.log('DATABASE QUERY - readGenre ' + id);
+};
+exports.readSelectGenresId = (id) => {
+    console.log('DATABASE QUERY - readSelectGenresId ' + id);
     return db.execute('SELECT * FROM genres WHERE genre_id =' + id);
-}
+};
 
-exports.readBooks = () => {
-    console.log('DATABASE QUERY - readBooks');
+//2
+exports.readSelectBooks = () => {
+    console.log('DATABASE QUERY - readSelectBooks');
     return db.execute('SELECT * FROM books;');
 };
 
-exports.readBook = (id) => {
-    console.log('DATABASE QUERY - readBook ' + id);
+exports.readSelectBooksId = (id) => {
+    console.log('DATABASE QUERY - readSelectBooksId ' + id);
     return db.execute('SELECT * FROM books WHERE book_id =' + id);
 };
 
-exports.readAuthors = () => {
-    console.log('DATABASE QUERY - readAuthors');
+//3
+exports.readSelectAuthors = () => {
+    console.log('DATABASE QUERY - readSelectAuthors');
     return db.execute('SELECT * FROM authors;');
 };
-
-exports.readAuthor = (id) => {
-    console.log('DATABASE QUERY - readAuthor ' + id);
+exports.readSelectAuthorsId = (id) => {
+    console.log('DATABASE QUERY - readSelectAuthorsId ' + id);
     return db.execute('SELECT * FROM authors WHERE author_id =' + id);
 };
 
-exports.readAuthorsBooks = () => {
-    console.log('DATABASE QUERY - readAuthors');
-    return db.execute('SELECT * FROM authors_books;');
+//4
+exports.readSelectBooks_has_authors = () => {
+    console.log('DATABASE QUERY - readAuthorsBooks');
+    return db.execute('SELECT * FROM books_has_authors;');
 };
-
-exports.readAuthorsBooksid = (id) => {
-    console.log('DATABASE QUERY - readAuthors ' + id);
-    return db.execute('SELECT * FROM authors_books WHERE pk_auther_id =' + id);
+exports.readSelectBooks_has_authors_books_id = (id) => {
+    console.log('DATABASE QUERY - readSelectBooks_has_authors_books_id ' + id);
+    return db.execute(`call select_many_book_id(${id});`);
+};
+exports.readSelectBooks_has_authors_authors_id = (id) => {
+    console.log('DATABASE QUERY - readSelectBooks_has_authors_authors_id ' + id);
+    return db.execute(`call select_many_author_id(${id});`);
 };
