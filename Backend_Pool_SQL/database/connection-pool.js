@@ -1,7 +1,8 @@
 const mysql = require('mysql2');
 
 // config
-const pool = mysql.createConnection({
+const pool = mysql.createPool({
+    connectionLimit: 10,
     host: 'localhost',
     user: 'root',
     database: 'books_2021',
