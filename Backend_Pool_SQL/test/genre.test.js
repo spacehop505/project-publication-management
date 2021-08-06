@@ -11,8 +11,8 @@ chai.should();
 describe('genre.test.js ', () => {
 
   // --------------------------------------------------------------- READ
-  it('should read /genres/read', (done) => {
-    chai.request(server).get("/genres/read").end((err, response) => {
+  it('should read /genre-management/genre', (done) => {
+    chai.request(server).get("/genre-management/genre").end((err, response) => {
       response.should.have.status(200);
       response.body.should.be.a('object');
       done();
@@ -20,9 +20,9 @@ describe('genre.test.js ', () => {
   });
 
   // --------------------------------------------------------------- READ
-  it('should read /genres/read/1', (done) => {
+  it('should read /genre-management/genre/1', (done) => {
     const id_genre = 1;
-    chai.request(server).get(`/genres/read/${id_genre}`).end((err, response) => {
+    chai.request(server).get(`/genre-management/genre/${id_genre}`).end((err, response) => {
       response.should.have.status(200);
       response.body.should.be.a('object');
       done();
@@ -30,13 +30,13 @@ describe('genre.test.js ', () => {
   });
 
   // --------------------------------------------------------------- UPDATE
-  it("should update /genres/update", (done) => {
+  it("should update /genre-management/genre", (done) => {
     let data = {
       name: "TEST UPDATE",
       description: "TEST UPDATE"
     }
     const id_genre = 2;
-    chai.request(server).put(`/genres/update/${id_genre}`)
+    chai.request(server).put(`/genre-management/genre/${id_genre}`)
       .send(data)
       .end((err, response) => {
         response.should.have.status(200);
@@ -47,12 +47,12 @@ describe('genre.test.js ', () => {
   });
 
   // --------------------------------------------------------------- CREATE
-  it("should create /genres/create", (done) => {
+  it("should create /genre-management/genre", (done) => {
     let data = {
       name: "TEST CREATE",
       description: "TEST CREATE"
     }
-    chai.request(server).post(`/genres/create/`)
+    chai.request(server).post(`/genre-management/genre/`)
       .send(data)
       .end((err, response) => {
         response.should.have.status(200);
@@ -63,9 +63,9 @@ describe('genre.test.js ', () => {
   });
 
   // --------------------------------------------------------------- DELETE
-  it("should delete /genres/delete", (done) => {
+  it("should delete /genre-management/genre", (done) => {
     const id_genre = 2;
-    chai.request(server).delete(`/genres/delete/${id_genre}`)
+    chai.request(server).delete(`/genre-management/genre/${id_genre}`)
       .end((err, response) => {
         response.should.have.status(200);
         response.body.should.be.a('object');

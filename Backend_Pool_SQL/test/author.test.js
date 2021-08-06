@@ -10,8 +10,8 @@ chai.should();
 
 describe('author.test.js ', () => {
   // --------------------------------------------------------------- READ
-  it('should read /authors/read', (done) => {
-    chai.request(server).get("/authors/read").end((err, response) => {
+  it('should read /author-management/author', (done) => {
+    chai.request(server).get("/author-management/author").end((err, response) => {
       response.should.have.status(200);
       response.body.should.be.a('object');
       response.body.should.have.property('status').eql('success');
@@ -20,9 +20,9 @@ describe('author.test.js ', () => {
   });
 
   // --------------------------------------------------------------- READ
-  it('should read /authors/read/1', (done) => {
+  it('should read /author-management/author/1', (done) => {
     const id_author = 1;
-    chai.request(server).get(`/authors/read/${id_author}`).end((err, response) => {
+    chai.request(server).get(`/author-management/author/${id_author}`).end((err, response) => {
       response.should.have.status(200);
       response.body.should.be.a('object');
       response.body.should.have.property('status').eql('success');
@@ -31,12 +31,12 @@ describe('author.test.js ', () => {
   });
 
   // --------------------------------------------------------------- CREATE
-  it("should create /authors/create", (done) => {
+  it("should create /author-management/author", (done) => {
     let data = {
       name: "TEST CREATE",
       bio: "TEST CREATE"
     }
-    chai.request(server).post(`/authors/create/`)
+    chai.request(server).post(`/author-management/author`)
       .send(data)
       .end((err, response) => {
         response.should.have.status(200);
@@ -47,13 +47,13 @@ describe('author.test.js ', () => {
   });
 
   // --------------------------------------------------------------- UPDATE
-  it("should update /authors/update", (done) => {
+  it("should update /author-management/author", (done) => {
     let data = {
       name: "TEST UPDATE",
       bio: "TEST UPDATE"
     }
     const id_author = 2;
-    chai.request(server).put(`/authors/update/${id_author}`)
+    chai.request(server).put(`/author-management/author/${id_author}`)
       .send(data)
       .end((err, response) => {
         response.should.have.status(200);
@@ -64,9 +64,9 @@ describe('author.test.js ', () => {
   });
 
   // --------------------------------------------------------------- DELETE
-  it("should delete /authors/delete", (done) => {
+  it("should delete /author-management/author", (done) => {
     const id_author = 1;
-    chai.request(server).delete(`/authors/delete/${id_author}`)
+    chai.request(server).delete(`/author-management/author/${id_author}`)
       .end((err, response) => {
         response.should.have.status(200);
         response.body.should.be.a('object');

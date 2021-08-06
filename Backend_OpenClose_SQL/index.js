@@ -17,11 +17,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/authors', AuthorRoutes);
-app.use('/books', BookRoutes);
-app.use('/bookshasauthors', BookHasAuthor);
-app.use('/genres', GenreRoutes);
+app.use('/author-management', AuthorRoutes);
+app.use('/book-management', BookRoutes);
+app.use('/book-has-author-management', BookHasAuthor);
+app.use('/genre-management', GenreRoutes);
 
 
-const port = 3000;
+const port = 4000;
 module.exports = app.listen(port, () => console.log(`Listening on port ${port}...`));

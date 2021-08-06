@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require("../database/connection-pool.js");
 
 // --------------------------------------------------------------- CREATE
-router.post('/create', async (req, res, next) => {
+router.post('/book-has-author', async (req, res, next) => {
     console.log('\nLOG-POST:', req.originalUrl, req.body);
     try {
         const id_book = req.body.id_book;
@@ -26,7 +26,7 @@ router.post('/create', async (req, res, next) => {
 });
 
 // --------------------------------------------------------------- READ
-router.get('/read', async (req, res, next) => {
+router.get('/book-has-author', async (req, res, next) => {
     console.log('\nLOG-GET:', req.originalUrl, req.body);
     try {
         await pool.query("SELECT * FROM books_has_authors;")
@@ -46,7 +46,7 @@ router.get('/read', async (req, res, next) => {
     }
 });
 // --------------------------------------------------------------- READ
-router.get('/read/book/:id_book', async (req, res, next) => {
+router.get('/book-has-author/book/:id_book', async (req, res, next) => {
     console.log('\nLOG-GET:', req.originalUrl, req.body);
     try {
         const id_book = req.params.id_book;
@@ -67,7 +67,7 @@ router.get('/read/book/:id_book', async (req, res, next) => {
     }
 });
 // --------------------------------------------------------------- READ
-router.get('/read/author/:id_author', async (req, res, next) => {
+router.get('/book-has-author/author/:id_author', async (req, res, next) => {
     console.log('\nLOG-GET:', req.originalUrl, req.body);
     try {
         const id_author = req.params.id_author;
@@ -91,7 +91,7 @@ router.get('/read/author/:id_author', async (req, res, next) => {
 // --------------------------------------------------------------- UPDATE
 
 // --------------------------------------------------------------- DELETE
-router.delete('/delete', async (req, res, next) => {
+router.delete('/book-has-author', async (req, res, next) => {
     console.log('\nLOG-DELETE:', req.originalUrl, req.body);
     try {
         const id_book = req.body.id_book;

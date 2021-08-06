@@ -11,8 +11,8 @@ chai.should();
 describe('book.test.js ', () => {
 
   // --------------------------------------------------------------- READ
-  it('should read /books/read', (done) => {
-    chai.request(server).get("/books/read").end((err, response) => {
+  it('should read /book-management/book', (done) => {
+    chai.request(server).get("/book-management/book").end((err, response) => {
       response.should.have.status(200);
       response.body.should.be.a('object');
       done();
@@ -20,9 +20,9 @@ describe('book.test.js ', () => {
   });
 
   // --------------------------------------------------------------- READ
-  it('should read /books/read/1', (done) => {
+  it('should read /book-management/book/1', (done) => {
     const id_author = 1;
-    chai.request(server).get(`/books/read/${id_author}`).end((err, response) => {
+    chai.request(server).get(`/book-management/book/${id_author}`).end((err, response) => {
       response.should.have.status(200);
       response.body.should.be.a('object');
       done();
@@ -30,7 +30,7 @@ describe('book.test.js ', () => {
   });
 
   // --------------------------------------------------------------- UPDATE
-  it("should update /books/update/1", (done) => {
+  it("should update /book-management/book/1", (done) => {
     let data = {
       title: "TEST UPDATE",
       description: "TEST UPDATE",
@@ -38,7 +38,7 @@ describe('book.test.js ', () => {
       genre: 3
     }
     const id_author = 1;
-    chai.request(server).put(`/books/update/${id_author}`)
+    chai.request(server).put(`/book-management/book/${id_author}`)
       .send(data)
       .end((err, response) => {
         response.should.have.status(200);
@@ -49,14 +49,14 @@ describe('book.test.js ', () => {
   });
 
   // --------------------------------------------------------------- CREATE
-  it("should create /books/create", (done) => {
+  it("should create /book-management/book", (done) => {
     let data = {
       title: "TEST CREATE",
       description: "TEST CREATE",
       isbn: "TEST CREATE",
       genre: 3
     }
-    chai.request(server).post(`/books/create/`)
+    chai.request(server).post(`/book-management/book`)
       .send(data)
       .end((err, response) => {
         response.should.have.status(200);
@@ -67,9 +67,9 @@ describe('book.test.js ', () => {
   });
 
   // --------------------------------------------------------------- DELETE
-  it("should delete /books/delete", (done) => {
+  it("should delete /book-management/book", (done) => {
     const id_author = 2;
-    chai.request(server).delete(`/books/delete/${id_author}`)
+    chai.request(server).delete(`/book-management/book/${id_author}`)
       .end((err, response) => {
         response.should.have.status(200);
         response.body.should.be.a('object');

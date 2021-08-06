@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require("../database/connection-pool.js");
 
 // --------------------------------------------------------------- CREATE
-router.post('/create', async (req, res, next) => {
+router.post('/author', async (req, res, next) => {
     console.log('\nLOG-POST:', req.originalUrl, req.body);
     try {
         const name = req.body.name;
@@ -25,7 +25,7 @@ router.post('/create', async (req, res, next) => {
     }
 });
 // --------------------------------------------------------------- READ
-router.get('/read', async (req, res, next) => {
+router.get('/author', async (req, res, next) => {
     console.log('\nLOG-GET:', req.originalUrl, req.body);
     try {
         await pool.query('SELECT * FROM authors;')
@@ -45,7 +45,7 @@ router.get('/read', async (req, res, next) => {
     }
 });
 // --------------------------------------------------------------- READ
-router.get('/read/:id_author', async (req, res, next) => {
+router.get('/author/:id_author', async (req, res, next) => {
     console.log('\nLOG-GET:', req.originalUrl, req.body);
     try {
         const id_author = req.params.id_author;
@@ -66,7 +66,7 @@ router.get('/read/:id_author', async (req, res, next) => {
     }
 });
 // --------------------------------------------------------------- UPDATE
-router.put('/update/:id_author', async (req, res, next) => {
+router.put('/author/:id_author', async (req, res, next) => {
     console.log('\nLOG-PUT:', req.originalUrl, req.body);
     try {
         const id_author = req.params.id_author;
@@ -89,7 +89,7 @@ router.put('/update/:id_author', async (req, res, next) => {
     }
 });
 // --------------------------------------------------------------- DELETE
-router.delete('/delete/:id_author', async (req, res, next) => {
+router.delete('/author/:id_author', async (req, res, next) => {
     console.log('\nLOG-DELETE:', req.originalUrl, req.body);
     try {
         const id_author = req.params.id_author;

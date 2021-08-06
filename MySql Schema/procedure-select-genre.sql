@@ -1,3 +1,4 @@
+use books_2021;
 # ///////////////////////////////////////////////////
 DROP PROCEDURE IF EXISTS  select_books_by_genre_id;
 DELIMITER //

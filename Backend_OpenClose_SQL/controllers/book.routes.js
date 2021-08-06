@@ -4,7 +4,7 @@ const router = express.Router();
 const mysql = require('mysql2');
 
 // --------------------------------------------------------------- CREATE
-router.post('/create', (req, res, next) => {
+router.post('/book', (req, res, next) => {
     const connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -37,7 +37,7 @@ router.post('/create', (req, res, next) => {
 });
 
 // --------------------------------------------------------------- READ
-router.get('/read', (req, res, next) => {
+router.get('/book', (req, res, next) => {
     const connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -63,7 +63,7 @@ router.get('/read', (req, res, next) => {
 });
 
 // --------------------------------------------------------------- READ
-router.get('/read/:id_book', (req, res, next) => {
+router.get('/book/:id_book', (req, res, next) => {
     const connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -90,7 +90,7 @@ router.get('/read/:id_book', (req, res, next) => {
 });
 
 // --------------------------------------------------------------- UPDATE
-router.put('/update/:id_book', (req, res, next) => {
+router.put('/book/:id_book', (req, res, next) => {
     const connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -123,7 +123,7 @@ router.put('/update/:id_book', (req, res, next) => {
 });
 
 // --------------------------------------------------------------- DELETE
-router.delete('/delete/:id_book', (req, res, next) => {
+router.delete('/book/:id_book', (req, res, next) => {
     const connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',

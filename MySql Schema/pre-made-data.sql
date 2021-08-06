@@ -3,7 +3,7 @@ insert into genres values(1, 'horror', 'horror ralted books');
 insert into genres values(2, 'history', 'history ralted books');
 insert into genres values(3, 'science', 'science ralted books');
 
-insert into books values(10, 'alpha', 'man in the red','A334', 1);
+insert into books values(1, 'alpha', 'man in the red','A334', 1);
 insert into books values(2, 'down', 'falling down','A21', 1);
 insert into books values(3, 'sun man', 'blue colours','A55', 2);
 insert into books values(4, 'soft rain', 'eating apples','A88', 3);
@@ -20,5 +20,7 @@ SELECT * FROM genres;
 SELECT * FROM books;
 SELECT * FROM authors;
 SELECT * FROM books_has_authors;
+
+#delete from authors where author_id = 3;
 
 
