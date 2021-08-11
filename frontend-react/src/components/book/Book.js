@@ -2,6 +2,8 @@ import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import ReadBook from './ReadBook';
 import UpdateBook from './UpdateBook';
+import Posts from './Posts';
+import Pagination from './Pagination';
 import './book.css';
 
 
@@ -116,17 +118,81 @@ function Book() {
   const handleCancelClick = () => {
     setSelectedBookId(null);
   };
+  const [getBook1, setBook1] = useState([]);
+  const [getLoading, setLoading] = useState(false);
+  const [getCurrentPage, setCurrentPage] = useState(1);
+  const [getPerPage, setPerPage] = useState(3);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  }
 
   useEffect(() => {
-    // async function fetchData(){
-    //  await api.get('Books/read/').then(res => {
-    //    setBook({Books: res.data.content})
-    //    console.log(getBook); }); }
-    //fetchDataId();
+    const fetchBooks = async () => {
+      setLoading(true);
+      const res = await api.get('/book');
+      setBook1(res.data.content)
+      setBook({ books: res.data.content });
+      console.log(res.data.content);
+      setLoading(false);
+    }
+    fetchBooks();
+
   }, []);
+
+
+  const indexOfLastPost = getCurrentPage * getPerPage;
+  const indexOfFirstPost = indexOfLastPost - getPerPage;
+  const currentPosts = getBook1.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
     <div className='book-main'>
+
+      <div>
+        <Posts posts={currentPosts} loading={getLoading}></Posts>
+        <Pagination postsPerPage={getPerPage} totalPosts={getBook1.length} paginate={paginate}></Pagination>
+      </div>
+
+      <div className='app-container'>
+        <form onSubmit={http_updateBook} autoComplete='off'>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>TITLE</th>
+                <th>DESCRIPTION</th>
+                <th>ISBN</th>
+                <th>GENRE</th>
+                <th>ACTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentPosts.map(books => (
+                <tr key={books.book_id}>
+                  <Fragment >
+                    <td>{books.book_id} </td>
+                    <td>{books.book_title}</td>
+                    <td>{books.book_description}</td>
+                    <td>{books.book_isbn}</td>
+                    <td>{books.book_genre_id}</td>
+                  </Fragment>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </form>
+      </div>
+
+      <Pagination postsPerPage={getPerPage} totalPosts={getBook1.length} paginate={paginate}></Pagination>
+
+
+
+
+
+
+
+
+
 
       <div className='book-box'>
         <h1>Create Book</h1>

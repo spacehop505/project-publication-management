@@ -7,6 +7,11 @@ insert into books values(1, 'alpha', 'man in the red','A334', 1);
 insert into books values(2, 'down', 'falling down','A21', 1);
 insert into books values(3, 'sun man', 'blue colours','A55', 2);
 insert into books values(4, 'soft rain', 'eating apples','A88', 3);
+insert into books values(default, 'alpha', 'man in the red','A334', 1);
+insert into books values(default, 'down', 'falling down','A21', 1);
+insert into books values(default, 'sun man', 'blue colours','A55', 2);
+insert into books values(default, 'soft rain', 'eating apples','A88', 3);
+
 
 insert into authors values(1, 'Bob', 'High Rated Author');
 insert into authors values(2, 'Seb', 'New Author');

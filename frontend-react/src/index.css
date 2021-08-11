@@ -7,3 +7,12 @@ body {
   margin-top: 2px;
   border: solid 0px blue;
 }
+
+main {
+  width: auto;
+}
+
+header {
+  width: auto;
+  border: solid 1px black;
+}

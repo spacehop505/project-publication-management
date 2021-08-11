@@ -1,0 +1,37 @@
+.btn-header,
+.btn-update,
+.btn-delete,
+.btn-save,
+.btn-cancel {
+  cursor: pointer;
+  border: none;
+  color: black;
+  padding: 4px 10px;
+  text-align: center;
+  margin: 5px;
+  font-size: 15px;
+}
+
+.btn-delete,
+.btn-cancel {
+  background-color: rgb(247, 105, 80);
+}
+
+.btn-delete:hover,
+.btn-cancel:hover {
+  color: white;
+  background-color: rgb(214, 52, 52);
+}
+
+.btn-header,
+.btn-update,
+.btn-save {
+  background-color: #28baef;
+}
+
+.btn-header:hover,
+.btn-update:hover,
+.btn-save:hover {
+  color: white;
+  background-color: #2a62ff;
+}

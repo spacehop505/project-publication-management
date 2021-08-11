@@ -46,7 +46,7 @@ router.get('/book', (req, res, next) => {
     });
     console.log('\nLOG-GET:', req.originalUrl, req.body, connection.stream.connecting);
 
-    connection.promise().query("SELECT * FROM books;")
+    connection.promise().query("SELECT * FROM select_book_genre;")
         .then(([rows, fields]) => {
             res.status(200).json({
                 count: rows.length,
@@ -131,7 +131,7 @@ router.delete('/book/:id_book', (req, res, next) => {
         password: 'admin'
     });
     console.log('\nLOG-DELETE:', req.originalUrl, req.body, connection.stream.connecting);
-    
+
     const id_book = req.params.id_book;
     connection.promise().query('DELETE FROM books WHERE book_id=? ', [id_book])
         .then(([rows, fields]) => {

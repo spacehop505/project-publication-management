@@ -1,0 +1,38 @@
+.styled-table {
+  border-collapse: collapse;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #94e7cb;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 5px solid #009879;
+}
+
+.active-row {
+  background-color: rgb(190, 243, 225);
+}
+
+.active-row input {
+  width: 100%;
+  border: solid 1px rgb(9, 142, 146);
+  padding: 4px 10px;
+  margin: 5px;
+  font-size: 15px;
+}

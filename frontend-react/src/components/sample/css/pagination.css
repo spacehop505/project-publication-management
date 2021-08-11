@@ -1,0 +1,29 @@
+.box-p1 {
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+}
+
+.box-p1 button {
+  width: auto;
+  cursor: pointer;
+  border: none;
+  color: black;
+  padding: 4px 10px;
+  text-align: center;
+  margin-top: 2px;
+  margin-right: 2px;
+  font-size: 15px;
+}
+
+.box-p1 button:hover {
+  background-color: #009879;
+}
+
+.pagination-active {
+  background-color: #009879;
+}
+
+.pagination-inactive {
+  background-color: #5bdfb9;
+}
