@@ -1,0 +1,73 @@
+.btn-header-active,
+.btn-header-inactive,
+.btn-update,
+.btn-delete,
+.btn-save,
+.btn-cancel {
+  cursor: pointer;
+  border: none;
+  color: black;
+  padding: 4px 10px;
+  text-align: center;
+  margin: 5px;
+  font-size: 15px;
+}
+
+.btn-delete {
+  background-color: rgb(241, 45, 45);
+  color: white;
+}
+.btn-delete:hover {
+  color: white;
+  background-color: rgb(187, 8, 8);
+}
+.btn-cancel {
+  color: white;
+  background-color: rgb(218, 175, 34);
+}
+.btn-cancel:hover {
+  background-color: rgb(187, 160, 8);
+}
+
+.btn-update,
+.btn-save {
+  color: white;
+  background-color: #009879;
+}
+
+.btn-update:hover,
+.btn-save:hover {
+  color: black;
+  background-color: #5bdfb9;
+}
+
+.btn-header-active {
+  color: white;
+  width: 100%;
+  background-color: #009879;
+}
+
+.btn-header-inactive {
+  width: 100%;
+  background-color: #5bdfb9;
+}
+
+.btn-header-inactive:hover {
+  color: white;
+  background-color: #009879;
+}
+
+.box-create button {
+  background-color: #0b6150;
+  cursor: pointer;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  margin: 5px;
+  font-size: 15px;
+}
+
+.box-create button:hover {
+  background-color: #23917b;
+  color: white;
+}

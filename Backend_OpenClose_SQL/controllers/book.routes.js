@@ -17,10 +17,10 @@ router.post('/book', (req, res, next) => {
         title,
         description,
         isbn,
-        genre
+        genre_id
     } = req.body;
 
-    connection.promise().query('INSERT INTO books(book_title, book_description, book_isbn, book_genre_id) VALUES(? ,?,?,?)', [title, description, isbn, genre])
+    connection.promise().query('INSERT INTO books(book_title, book_description, book_isbn, book_genre_id) VALUES(? ,?,?,?)', [title, description, isbn, genre_id])
         .then(([rows, fields]) => {
             res.status(200).json({
                 count: rows.length,
@@ -104,9 +104,9 @@ router.put('/book/:id_book', (req, res, next) => {
         title,
         description,
         isbn,
-        genre
+        book_genre_id
     } = req.body;
-    connection.promise().query('UPDATE books SET book_title=?, book_description=?, book_isbn=?, book_genre_id=? WHERE book_id=?', [title, description, isbn, genre, id_book])
+    connection.promise().query('UPDATE books SET book_title=?, book_description=?, book_isbn=?, book_genre_id=? WHERE book_id=?', [title, description, isbn, book_genre_id, id_book])
         .then(([rows, fields]) => {
             res.status(200).json({
                 count: rows.length,

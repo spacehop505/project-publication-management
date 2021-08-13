@@ -1,0 +1,29 @@
+.box-0 {
+  width: auto;
+  border: solid 0px rgb(253, 54, 54);
+}
+
+.box-table {
+  width: auto;
+  margin-top: 10px;
+  border: solid 0px black;
+}
+
+.box-create {
+  width: auto;
+  margin-top: 6px;
+  border: solid 0px black;
+}
+
+.box-pagination {
+  border: solid 0px black;
+  margin-top: 4px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 50px;
+  font-family: sans-serif;
+  color: #009879;
+  text-align: center;
+}

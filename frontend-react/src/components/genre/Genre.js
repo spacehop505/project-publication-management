@@ -1,18 +1,18 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
-import SampleRead from './AuthorRead';
-import SampleUpdate from './AuthorUpdate';
+import SampleRead from './GenreRead';
+import SampleUpdate from './GenreUpdate';
 import Pagination from './Pagination';
-import SampleCreate from './AuthorCreate';
+import SampleCreate from './GenreCreate';
 
 const api = axios.create({
-  baseURL: 'http://localhost:4000/author-management'
+  baseURL: 'http://localhost:4000/genre-management'
 });
 
-const Author = () => {
-  console.log('==AUTHOR==')
-  const [getAuthor, setAuthor] = useState([]);
-  const [getSelectedAuthorId, setSelecteduthorId] = useState(null);
+const Genre = () => {
+  console.log('==GENRE==')
+  const [getBook, setBook] = useState([]);
+  const [getSelectedBookId, setSelectedBookId] = useState(null);
 
   // [PAGINATION]
   const [getCurrentPage, setCurrentPage] = useState(1);
@@ -23,17 +23,17 @@ const Author = () => {
   const [getUpdateInput_Data, setUpdateInput_Data] = useState({
     id: '',
     name: '',
-    bio: ''
+    description: ''
   });
   // - [update-step-1] [onClick] [COLLECT-DATA-FROM-SELECTED-ROW]
-  const collectFromRead_SetInputUpdateData_handleOnClick = (currentAuthors) => {
-    setSelecteduthorId(currentAuthors.author_id);
+  const collectFromRead_SetInputUpdateData_handleOnClick = (currentGenres) => {
+    setSelectedBookId(currentGenres.genre_id);
     setUpdateInput_Data({
-      id: currentAuthors.author_id,
-      name: currentAuthors.author_name,
-      bio: currentAuthors.author_bio,
+      id: currentGenres.genre_id,
+      name: currentGenres.genre_name,
+      description: currentGenres.genre_description,
     });
-    console.log('[update-step-1] collectFromRead_SetInputUpdateData_handleOnClick', currentAuthors);
+    console.log('[update-step-1] collectFromRead_SetInputUpdateData_handleOnClick', currentGenres);
   };
   // - [update-step-2] [onChange] [COLLECT-DATA-FROM-INPUT]
   const collectFromInput_SetInputUpdateData_handleOnChange = (event) => {
@@ -46,27 +46,27 @@ const Author = () => {
   };
   // - [update-step-3] [onClick] [PUT-UPDATE]
   const axiousUpdate_HandleOnClick = async () => {
-    await api.put(`/author/${getUpdateInput_Data.id}`, getUpdateInput_Data)
+    await api.put(`/genre/${getUpdateInput_Data.id}`, getUpdateInput_Data)
       .then(res => {
         cancelClick_onClick();
-        axiosGetAuthor();
-        console.log('[update-step-3] axiousUpdate_HandleOnClick -', res);
+        axiosGetGenre();
+        console.log('[update-step-3] [PUT] axiousUpdate_HandleOnClick -', res);
       });
   };
   ///////////////////////[end]///////////////////////
 
 
   ///////////////////////[GET]///////////////////////
-  const axiosGetAuthor = async () => {
-    await api.get('/author').then(res => {
-      setAuthor(res.data.content)
-      console.log('[GET] axiosGetAuthor -', res);
+  const axiosGetGenre = async () => {
+    await api.get('/genre').then(res => {
+      setBook(res.data.content)
+      console.log('[GET] axiosGetGenre -', res);
     });
   };
 
   // - [onClick]
   const cancelClick_onClick = () => {
-    setSelecteduthorId(null);
+    setSelectedBookId(null);
   };
 
   const paginate = (pageNumber) => {
@@ -75,13 +75,12 @@ const Author = () => {
 
   const indexOfLastPost = getCurrentPage * getPerPage;
   const indexOfFirstPost = indexOfLastPost - getPerPage;
-  const currentPosts = getAuthor.slice(indexOfFirstPost, indexOfLastPost);
-
+  const currentPosts = getBook.slice(indexOfFirstPost, indexOfLastPost);
 
   useEffect(() => {
     const fetchcurrentGenre = async () => {
-      const res = await api.get('/author');
-      setAuthor(res.data.content)
+      const res = await api.get('/genre');
+      setBook(res.data.content)
       console.log('useEffect() get fetchcurrentGenre -', res.data.content);
     }
     fetchcurrentGenre();
@@ -91,11 +90,11 @@ const Author = () => {
     <div className='box-0'>
 
       <div>
-        <h1>AUTHOR</h1>
+        <h1>GENRE</h1>
       </div>
 
       <div className='box-create'>
-        <SampleCreate api={api} axiosGetAuthor={axiosGetAuthor}></SampleCreate>
+        <SampleCreate api={api} axiosGetGenre={axiosGetGenre}></SampleCreate>
       </div>
 
       <div className='box-table'>
@@ -104,14 +103,14 @@ const Author = () => {
             <tr>
               <th>ID</th>
               <th>NAME</th>
-              <th>BIO</th>
+              <th>DESCRIPTION</th>
               <th>ACTION</th>
             </tr>
           </thead>
           <tbody>
-            {currentPosts.map(currentAuthors => (
-              <Fragment key={currentAuthors.author_id}>
-                {getSelectedAuthorId === currentAuthors.author_id
+            {currentPosts.map(currentGenres => (
+              <Fragment key={currentGenres.genre_id}>
+                {getSelectedBookId === currentGenres.genre_id
                   ?
                   (<SampleUpdate
                     axiousUpdate_HandleOnClick={axiousUpdate_HandleOnClick}
@@ -120,9 +119,9 @@ const Author = () => {
                     cancelClick_onClick={cancelClick_onClick}></SampleUpdate>
                   )
                   :
-                  (<SampleRead currentAuthors={currentAuthors}
+                  (<SampleRead currentGenres={currentGenres}
                     api={api}
-                    axiosGetAuthor={axiosGetAuthor}
+                    axiosGetGenre={axiosGetGenre}
                     collectFromRead_SetInputUpdateData_handleOnClick={collectFromRead_SetInputUpdateData_handleOnClick}
                   ></SampleRead>
                   )
@@ -134,12 +133,15 @@ const Author = () => {
       </div>
 
       <div className='box-pagination'>
-        <Pagination postsPerPage={getPerPage} totalPosts={getAuthor.length} paginate={paginate}></Pagination>
+        <Pagination postsPerPage={getPerPage} totalPosts={getBook.length} paginate={paginate}></Pagination>
       </div>
+
+
+
 
     </div>
 
   );
 };
 
-export default Author;
+export default Genre;
