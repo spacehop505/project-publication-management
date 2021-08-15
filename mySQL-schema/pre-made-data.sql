@@ -28,14 +28,7 @@ insert into authors values(6, 'Tom Muck', 'New Author');
 insert into authors values(7, 'Alex Doe', 'New Author');
 insert into authors values(8, 'Joe Sove', 'New Author');
 
-#insert into books_has_authors values(1,1);
-#insert into books_has_authors values(1,2);
-#insert into books_has_authors values(2,1);
-#insert into books_has_authors values(3,1);
 SELECT * FROM genres;
 SELECT * FROM books;
 SELECT * FROM authors;
 SELECT * FROM books_has_authors;
-
-#delete from books_has_authors where many_book_id = 3 and many_author_id = 1;
-#select * from select_book_genre;

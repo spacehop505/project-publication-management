@@ -46,7 +46,7 @@ router.get('/book', (req, res, next) => {
     });
     console.log('\nLOG-GET:', req.originalUrl, req.body, connection.stream.connecting);
 
-    connection.promise().query("SELECT * FROM select_book_genre;")
+    connection.promise().query(`SELECT book_id, book_title, book_description, book_isbn, genre_name, book_genre_id FROM books LEFT  JOIN genres ON genres.genre_id = books.book_genre_id;`)
         .then(([rows, fields]) => {
             res.status(200).json({
                 count: rows.length,

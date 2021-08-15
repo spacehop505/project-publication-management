@@ -41,7 +41,10 @@ router.get('/book-has-author', (req, res, next) => {
     });
     console.log('\nLOG-GET:', req.originalUrl, req.body, connection.stream.connecting);
 
-    connection.promise().query("SELECT * FROM select_many_book_id;")
+    connection.promise().query(`SELECT many_book_id, book_title, many_author_id, author_name FROM books_has_authors 
+        LEFT JOIN books ON books.book_id = books_has_authors.many_book_id
+        LEFT JOIN authors ON authors.author_id = books_has_authors.many_author_id
+        LEFT JOIN genres ON genres.genre_id = books.book_genre_id;`)
         .then(([rows, fields]) => {
             res.status(200).json({
                 count: rows.length,
@@ -67,7 +70,11 @@ router.get('/book-has-author/book/:id_book', (req, res, next) => {
     console.log('\nLOG-GET:', req.originalUrl, req.body, connection.stream.connecting);
 
     const id_book = req.params.id_book;
-    connection.promise().query('call select_many_book_by_id( ? );', [id_book])
+    connection.promise().query(`SELECT * FROM books_has_authors
+    LEFT JOIN books ON books.book_id = books_has_authors.many_book_id
+    LEFT JOIN authors ON authors.author_id = books_has_authors.many_author_id
+    LEFT JOIN genres ON genres.genre_id = books.book_genre_id
+    WHERE many_book_id = ?;`, [id_book])
         .then(([rows, fields]) => {
             res.status(200).json({
                 count: rows.length,
@@ -94,7 +101,11 @@ router.get('/book-has-author/author/:id_author', (req, res, next) => {
     console.log('\nLOG-GET:', req.originalUrl, req.body, connection.stream.connecting);
 
     const id_author = req.params.id_author;
-    connection.promise().query('call select_many_author_by_id( ? );', [id_author])
+    connection.promise().query(`SELECT * FROM books_has_authors
+    LEFT JOIN books ON books.book_id = books_has_authors.many_book_id
+    LEFT JOIN authors ON authors.author_id = books_has_authors.many_author_id
+    LEFT JOIN genres ON genres.genre_id = books.book_genre_id
+    WHERE many_author_id = ?;`, [id_author])
         .then(([rows, fields]) => {
             res.status(200).json({
                 count: rows.length,
