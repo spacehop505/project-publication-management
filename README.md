@@ -1,4 +1,6 @@
-# rest-project
+# rest-express-react
+Frontend - react
+Backend - node.js express
 
 ![CPT2108151626-769x589](https://user-images.githubusercontent.com/65245922/129485973-b008cfbf-0079-48db-a9c7-9fbdaba1450f.gif)
 
