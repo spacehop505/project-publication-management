@@ -23,6 +23,12 @@ Folder mySQL-schema/
 ```
 schema_2021.mwb
 ```
+## Developed In 
+backend: 
+ - nodejs, express, mysql
+
+client-frontend:
+ - nodejs, react
 
 ## URI
 frontend-react 
